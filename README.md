@@ -20,7 +20,7 @@ A New Format for SIMD-accelerated SpMV
 `bhd@gorgon0:/mnt/home/bhd/test1/CSR2$ ls`  
 `check  check.cpp  CSR2_SPMV  CSR2_SPMV.cpp  CSR_SPMV  CSR_SPMV.cpp  dense.mtx  dense_vector.mtx  Makefile  README.md`  
 `bhd@gorgon0:/mnt/home/bhd/test1/CSR2$ ./CSR2_SPMV dense.mtx dense_vector.mtx 10000`  
-`----------------dense.mtx----------------`  
+**`----------------dense.mtx----------------`  
 `Number of iterations are 10000 times`  
 `(2048 , 2048) , nzz_num = 4194304`  
 `mtx_width = 64`  
@@ -28,7 +28,7 @@ A New Format for SIMD-accelerated SpMV
 `CSR2_Spmv Calculate Time : 0.156340 ms`  
 `CSR2_Spmv Gflops : 53.656151 Gflops`  
 `bandwidth = 499.858270 GB/s`  
-`------------------------END----------------------`  
+`------------------------END----------------------`**  
   
 and the "answer_CSR2.txt" result file will be generated after the operation is completed;  
   
@@ -45,7 +45,7 @@ and the "answer_serial.txt" result file will be generated after the operation is
 `answer_CSR2.mtx    check      CSR2_SPMV      CSR_SPMV      dense.mtx         Makefile`  
 `answer_serial.mtx  check.cpp  CSR2_SPMV.cpp  CSR_SPMV.cpp  dense_vector.mtx  README.md`  
 `bhd@gorgon0:/mnt/home/bhd/test1/CSR2$ ./check answer_CSR2.mtx answer_serial.mtx`  
-`Answer is Right! PASS`  
+**`Answer is Right! PASS`**  
 
 ## Note
 
