@@ -212,20 +212,20 @@ void Avx2_SegSum(INT *&Csr2_row_ptr,AVX *&Csr2_mid_val,DOU *&mtx_ans,INT *&par_s
 
 int main(int argc,char ** argv)
 {
-    FILE * fp_mtx;
-    FILE * fp_vec;
-    FILE * fp_ans;
-    DOU  * vec_val;
-    INT  * row_ptr;
-    INT  * col_idx;
-    DOU  * mtx_val;
-    INT  * par_set;
-    DOU  * mtx_ans;
-    INT  * Csr2_row_ptr;
-    AVX  * Csr2_mtx_val;
-    AVX  * Csr2_mid_val;
-    fp_ans = fopen("answer_CSR2.mtx","wb+");
-    //---------------------------------------------------------------//
+        FILE * fp_mtx;
+        FILE * fp_vec;
+        FILE * fp_ans;
+        DOU  * vec_val;
+        INT  * row_ptr;
+        INT  * col_idx;
+        DOU  * mtx_val;
+        INT  * par_set;
+        DOU  * mtx_ans;
+        INT  * Csr2_row_ptr;
+        AVX  * Csr2_mtx_val;
+        AVX  * Csr2_mid_val;
+        fp_ans = fopen("answer_CSR2.mtx","wb+");
+        //---------------------------------------------------------------//
         char * Matrixname;
         char * Vectorname;
         char * Iterations;
@@ -246,62 +246,62 @@ int main(int argc,char ** argv)
         }
         printf("Number of iterations are %d times\n",ite);
         //---------------------------------------------------------------//
-    ReadFileConvertCsr(fp_mtx,fp_vec,row_ptr,col_idx,mtx_val,vec_val,par_set);
-    //------------------Avx2_CsrConvertCsr2 Warm Up------------------//
-    for(INT i=0;i<5;i++)
-    {
+        ReadFileConvertCsr(fp_mtx,fp_vec,row_ptr,col_idx,mtx_val,vec_val,par_set);
+        //------------------Avx2_CsrConvertCsr2 Warm Up------------------//
+        for(INT i=0;i<5;i++)
+        {
             Avx2_CsrConvertCsr2(row_ptr,mtx_val,Csr2_row_ptr,Csr2_mtx_val,par_set);
             free(Csr2_row_ptr);
             _mm_free(Csr2_mtx_val);
-    }
-    //---------------------------------------------------------------//
-    struct timeval start,end;
-    double timeuse;
-    gettimeofday(&start,NULL);
-    //---------------------------------------------------------------//
-    Avx2_CsrConvertCsr2(row_ptr,mtx_val,Csr2_row_ptr,Csr2_mtx_val,par_set);
-    Csr2_mid_val  = (AVX *)_mm_malloc(sizeof(AVX)*par_set[6],sizeof(DOU)*8);
-    mtx_ans = (DOU *)malloc(sizeof(DOU)*(par_set[3]-1));
-    //---------------------------------------------------------------//
-    gettimeofday(&end,NULL);
-    timeuse = end.tv_sec - start.tv_sec + (end.tv_usec - start.tv_usec)/1000000.0;
-    printf("CsrConvertCsr2 Time : %.6lf ms\n",timeuse*1000);
-    free(row_ptr);
-    free(mtx_val);
-    //----------------------------Warm Up----------------------------//
-    for(INT i=0;i<500;i++)
-    {
+        }
+        //---------------------------------------------------------------//
+        struct timeval start,end;
+        double timeuse;
+        gettimeofday(&start,NULL);
+        //---------------------------------------------------------------//
+        Avx2_CsrConvertCsr2(row_ptr,mtx_val,Csr2_row_ptr,Csr2_mtx_val,par_set);
+        Csr2_mid_val  = (AVX *)_mm_malloc(sizeof(AVX)*par_set[6],sizeof(DOU)*8);
+        mtx_ans = (DOU *)malloc(sizeof(DOU)*(par_set[3]-1));
+        //---------------------------------------------------------------//
+        gettimeofday(&end,NULL);
+        timeuse = end.tv_sec - start.tv_sec + (end.tv_usec - start.tv_usec)/1000000.0;
+        printf("CsrConvertCsr2 Time : %.6lf ms\n",timeuse*1000);
+        free(row_ptr);
+        free(mtx_val);
+        //----------------------------Warm Up----------------------------//
+        for(INT i=0;i<500;i++)
+        {
         Avx2_Madd(Csr2_mid_val,Csr2_mtx_val,col_idx,vec_val,par_set);
         Avx2_SegSum(Csr2_row_ptr,Csr2_mid_val,mtx_ans,par_set);
-    }
-    //---------------------------CSR2 SpMV---------------------------//
-    gettimeofday(&start,NULL);
-    for(INT i=0;i<ite;i++)
-    {
+        }
+        //---------------------------CSR2 SpMV---------------------------//
+        gettimeofday(&start,NULL);
+        for(INT i=0;i<ite;i++)
+        {
         Avx2_Madd(Csr2_mid_val,Csr2_mtx_val,col_idx,vec_val,par_set);
         Avx2_SegSum(Csr2_row_ptr,Csr2_mid_val,mtx_ans,par_set);
-    }
-    gettimeofday(&end,NULL);
-    timeuse = end.tv_sec - start.tv_sec + (end.tv_usec - start.tv_usec)/1000000.0;
-    //------------------------Important Information Print--------------------------------------//
-    printf("CSR2_Spmv Calculate Time : %.6lf ms\n",(timeuse/ite)*1000.0);
-    printf("CSR2_Spmv Gflops : %.6lf Gflops \n",((2*par_set[7])*1.0)/1000000000/(timeuse*1.0/ite));
-    double bandwidth;
-    bandwidth = ((par_set[3]+par_set[7])*sizeof(int)+(2*par_set[7]+par_set[3]-1)*sizeof(double))/(timeuse*1.0/ite)/(1024*1024*1024);
-    printf("bandwidth = %lf GB/s\n",bandwidth);
-    printf("------------------------END----------------------\n");
-    fprintf(fp_ans,"%d\n",par_set[3]-1);
-    for(INT i=0;i<par_set[3]-1;i++)
-    {
+        }
+        gettimeofday(&end,NULL);
+        timeuse = end.tv_sec - start.tv_sec + (end.tv_usec - start.tv_usec)/1000000.0;
+        //------------------------Important Information Print--------------------------------------//
+        printf("CSR2_Spmv Calculate Time : %.6lf ms\n",(timeuse/ite)*1000.0);
+        printf("CSR2_Spmv Gflops : %.6lf Gflops \n",((2*par_set[7])*1.0)/1000000000/(timeuse*1.0/ite));
+        double bandwidth;
+        bandwidth = ((par_set[3]+par_set[7])*sizeof(int)+(2*par_set[7]+par_set[3]-1)*sizeof(double))/(timeuse*1.0/ite)/(1024*1024*1024);
+        printf("bandwidth = %lf GB/s\n",bandwidth);
+        printf("------------------------END----------------------\n");
+        fprintf(fp_ans,"%d\n",par_set[3]-1);
+        for(INT i=0;i<par_set[3]-1;i++)
+        {
         fprintf(fp_ans,"%.6lf\n",mtx_ans[i]);
-    }
-    //--------------------------------------------------------------//
-    free(vec_val);
-    free(col_idx);
-    free(par_set);
-    free(mtx_ans);
-    free(Csr2_row_ptr);
-    _mm_free(Csr2_mtx_val);
-    _mm_free(Csr2_mid_val);
-    return 0;
+        }
+        //--------------------------------------------------------------//
+        free(vec_val);
+        free(col_idx);
+        free(par_set);
+        free(mtx_ans);
+        free(Csr2_row_ptr);
+        _mm_free(Csr2_mtx_val);
+        _mm_free(Csr2_mid_val);
+        return 0;
 }
