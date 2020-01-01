@@ -1,7 +1,7 @@
 # CSR2
 A New Format for SIMD-accelerated SpMV
 
-manual:
+#manual:
 
 (1) Enter the `make` command to compile the Makefile. CSR2_SPMV, CSR_SPMV, and check executable files will be generated in the current directory.  
   
