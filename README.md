@@ -49,3 +49,10 @@ and the "answer_serial.txt" result file will be generated after the operation is
 
 ## Note
 
+(1) The experimental data comes from formerly the University of Florida Sparse Matrix Collection. For the convenience of the experiment, our program does not process the code in the comment part of the matrix file, so we delete the comment part in the downloaded matrix.  
+  
+(2) We found in the experiment that the storage format of the sparse matrix in the data is not the row main order but the column main order, so we reversed the read order when reading the data, like this:  
+  
+```fscanf(fp_mtx,"%d %d %lf",&col,&row,&val)```  
+  
+In the process of comparing CSR5 experiments, we also used Liu's CSR5 program to read data files in the same way to ensure the consistency of data reading.
