@@ -4,6 +4,7 @@ A New Format for SIMD-accelerated SpMV
 manual:
 
 (1) Enter the `make` command to compile the Makefile. CSR2_SPMV, CSR_SPMV, and check executable files will be generated in the current directory.  
+  
 `bhd@gorgon0:/mnt/home/bhd/test1/CSR2$ ls`  
 `check  check.cpp  CSR2_SPMV  CSR2_SPMV.cpp  CSR_SPMV  CSR_SPMV.cpp  Makefile  README.md`  
 `bhd@gorgon0:/mnt/home/bhd/test1/CSR2$ make`  
@@ -28,12 +29,15 @@ manual:
 `bandwidth = 499.858270 GB/s`  
 `------------------------END----------------------`  
   
-and the "answer_CSR2.txt" result file will be generated after the operation is completed;
+and the "answer_CSR2.txt" result file will be generated after the operation is completed;  
+
 (3) Use CSR_SPMV to run the SPMV program under CSR, input:  
                     **`./CSR_SPMV <matrix name> <vector name>`**  
+  
 `bhd@gorgon0:/mnt/home/bhd/test1/CSR2$ ./CSR_SPMV dense.mtx dense_vector.mtx`  
   
-and the "answer_serial.txt" result file will be generated after the operation is completed;
+and the "answer_serial.txt" result file will be generated after the operation is completed;  
+
 (4) Run check, Input:  
                     **`./check answer_CSR2.txt answer_serial.txt`**  
 `bhd@gorgon0:/mnt/home/bhd/test1/CSR2$ ls`  
