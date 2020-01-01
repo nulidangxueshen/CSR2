@@ -30,17 +30,17 @@ A New Format for SIMD-accelerated SpMV
 `bandwidth = 499.858270 GB/s`  
 `------------------------END----------------------`**  
   
-and the "answer_CSR2.txt" result file will be generated after the operation is completed;  
+and the "answer_CSR2.mtx" result file will be generated after the operation is completed;  
   
 (3) Run "CSR_SPMV" , input:  
                     **`./CSR_SPMV <matrix name> <vector name>`**  
   
 `bhd@gorgon0:/mnt/home/bhd/test1/CSR2$ ./CSR_SPMV dense.mtx dense_vector.mtx`  
   
-and the "answer_serial.txt" result file will be generated after the operation is completed;  
+and the "answer_serial.mtx" result file will be generated after the operation is completed;  
 
 (4) Run "check" , Input:  
-                    **`./check answer_CSR2.txt answer_serial.txt`**  
+                    **`./check answer_CSR2.mtx answer_serial.mtx`**  
 `bhd@gorgon0:/mnt/home/bhd/test1/CSR2$ ls`  
 `answer_CSR2.mtx    check      CSR2_SPMV      CSR_SPMV      dense.mtx         Makefile`  
 `answer_serial.mtx  check.cpp  CSR2_SPMV.cpp  CSR_SPMV.cpp  dense_vector.mtx  README.md`  
