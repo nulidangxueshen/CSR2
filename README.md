@@ -57,7 +57,7 @@ and the "answer_serial.mtx" result file will be generated after the operation is
   
 In the process of comparing CSR5 experiments, we also used Liu's CSR5 program to read data files in the same way to ensure the consistency of data reading.
 
-(3)This program supports g ++ and icc compilation. The Makefile file in this program is initially set to be compiled by the icc compiler. You can also comment the icc compiled code and use the g ++ compiler in the file to compile. For comparison experiments, please choose The same compilation environment.  
+(3)This program supports `g++` and `icc` compilation. The Makefile file in this program is initially set to be compiled by the `icc` compiler. You can also comment the `icc` compiled code and use the `g++` compiler in the file to compile. For comparison experiments, please choose The same compilation environment.  
   
-(4)This experiment was tested on two CPU platforms, Dual Socket Intel Xeon CPU E5-2670 v3 and Intel Core i7-7700HQ CPU.  
+(4)This experiment was tested on two CPU platforms: `Dual Socket Intel Xeon CPU E5-2670 v3` and `Intel Core i7-7700HQ CPU`.  
   
