@@ -4,7 +4,7 @@ all:CSR2_SPMV CSR_SPMV check
 #compilers(g++ or icc)
 
 CC=icc
-##CC = g++
+#CC = g++
 
 #g++
 #CSR2_SPMV:
