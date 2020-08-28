@@ -1,6 +1,10 @@
 # CSR2
 A New Format for SIMD-accelerated SpMV
 
+Our Paper :
+
+H. Bian, J. Huang, R. Dong, L. Liu and X. Wang, "CSR2: A New Format for SIMD-accelerated SpMV," 2020 20th IEEE/ACM International Symposium on Cluster, Cloud and Internet Computing (CCGRID), Melbourne, Australia, 2020, pp. 350-359, doi: 10.1109/CCGrid49817.2020.00-58.
+
 ## manual:
 
 (1) Enter the `make` command to compile the Makefile. CSR2_SPMV, CSR_SPMV, and check executable files will be generated in the current directory.  
