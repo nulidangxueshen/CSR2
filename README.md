@@ -65,3 +65,16 @@ In the process of comparing CSR5 experiments, we also used Liu's CSR5 program to
   
 (4)This experiment was tested on two CPU platforms: `Dual Socket Intel Xeon CPU E5-2670 v3` and `Intel Core i7-7700HQ CPU`.  
   
+## Cite This:  
+```
+@INPROCEEDINGS{9139720, 
+  author={Bian, Haodong and Huang, Jianqiang and Dong, Runting and Liu, Lingbin and Wang, Xiaoying},  
+  booktitle={2020 20th IEEE/ACM International Symposium on Cluster, Cloud and Internet Computing (CCGRID)},   
+  title={CSR2: A New Format for SIMD-accelerated SpMV},   
+  year={2020},  
+  volume={},  
+  number={},  
+  pages={350-359},  
+  doi={10.1109/CCGrid49817.2020.00-58}
+}
+```
